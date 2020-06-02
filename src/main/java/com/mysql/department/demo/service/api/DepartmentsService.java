@@ -15,6 +15,15 @@ import java.util.List;
 public interface DepartmentsService {
 
     /**
+     * 通过部门id查询部门下所有主管的个人详细信息
+     *
+     * @param id 主键
+     * @return 多条数据
+     */
+    DeptAndEmployees getDeptManagerInfo(String deptNo);
+
+
+    /**
      * 通过ID查询单条数据
      *
      * @param deptNo 主键

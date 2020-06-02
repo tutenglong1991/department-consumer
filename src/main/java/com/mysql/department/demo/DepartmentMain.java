@@ -17,16 +17,7 @@ import org.springframework.context.annotation.ComponentScan;
 public class DepartmentMain {
 //    @Reference(url="dubbo://192.168.0.101:20880/com.mysql.employee.demo.service.api.EmployeesService")
     @Reference(url="dubbo://172.21.0.7:20880/com.mysql.employee.demo.service.api.EmployeesService")
-
-//    private EmployeesService employeesService;
-
     public static void main(String[] args) {
         SpringApplication.run(DepartmentMain.class);
     }
-
-//    @Bean
-//    public ApplicationRunner runner() {
-//        System.out.println(employeesService);
-//        return args -> System.out.println(JSON.toJSONString(employeesService.queryById(10001)));
-//    }
 }
