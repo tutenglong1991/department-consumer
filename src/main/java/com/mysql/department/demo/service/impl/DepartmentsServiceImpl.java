@@ -2,8 +2,9 @@ package com.mysql.department.demo.service.impl;
 
 import com.mysql.department.demo.entity.Departments;
 import com.mysql.department.demo.dao.DepartmentsDao;
-import com.mysql.department.demo.service.DepartmentsService;
-import org.springframework.stereotype.Service;
+import com.mysql.department.demo.service.api.DepartmentsService;
+import org.apache.dubbo.config.annotation.Service;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -14,7 +15,8 @@ import java.util.List;
  * @author makejava
  * @since 2020-06-01 13:28:03
  */
-@Service("departmentsService")
+@Service
+@Component
 public class DepartmentsServiceImpl implements DepartmentsService {
     @Resource
     private DepartmentsDao departmentsDao;
@@ -29,6 +31,7 @@ public class DepartmentsServiceImpl implements DepartmentsService {
     public Departments queryById(String deptNo) {
         return this.departmentsDao.queryById(deptNo);
     }
+
 
     /**
      * 查询多条数据

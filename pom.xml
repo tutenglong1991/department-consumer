@@ -84,31 +84,21 @@
         </resources>
 
         <plugins>
+            <!--热部署插件-->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.0</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <excludes>
-                        <exclude>**/*.properties</exclude>
-                        <!--<exclude>**/*.yml</exclude>-->
-                    </excludes>
-                    <archive>
-                        <manifest>
-                            <!-- 是否添加依赖的jar路径配置 -->
-                            <addClasspath>true</addClasspath>
-                            <!-- 依赖的jar包存放位置，和生成的jar放在同一级目录下 -->
-                            <classpathPrefix>${project.artifactId}-${project.version}/lib/</classpathPrefix>
-                            <!-- 配置maven编译打包后jar包的主入口函数 -->
-                            <mainClass>com.mysql.department.demo.DepartmentMain</mainClass>
-                        </manifest>
-                    </archive>
-                    <!-- 配置maven编译打包依赖的本地jar包 -->
-                    <!--<includes>-->
-                    <!--<directory>${project.build.directory}</directory>-->
-                    <!--<include>**/*.jar</include>-->
-                    <!--</includes>-->
+                    <!--此处为自己的启动类-->
+                    <mainClass>com.mysql.department.demo.DepartmentMain</mainClass>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <!-- 抽取第三方依赖 jar 包，到独立 lib 目录中 -->
             <plugin>

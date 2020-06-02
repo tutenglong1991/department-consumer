@@ -1,6 +1,9 @@
-package com.mysql.department.demo.service;
+package com.mysql.department.demo.service.api;
 
 import com.mysql.department.demo.entity.Departments;
+import com.mysql.department.demo.entity.DeptAndEmployees;
+import com.mysql.department.demo.entity.DeptManager;
+
 import java.util.List;
 
 /**
@@ -18,6 +21,7 @@ public interface DepartmentsService {
      * @return 实例对象
      */
     Departments queryById(String deptNo);
+
 
     /**
      * 查询多条数据

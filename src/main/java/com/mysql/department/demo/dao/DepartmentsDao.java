@@ -1,6 +1,7 @@
 package com.mysql.department.demo.dao;
 
 import com.mysql.department.demo.entity.Departments;
+import com.mysql.department.demo.entity.DeptAndEmployees;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public interface DepartmentsDao {
      * @return 实例对象
      */
     Departments queryById(String deptNo);
+
 
     /**
      * 查询指定行数据

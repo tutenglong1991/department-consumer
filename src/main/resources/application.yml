@@ -3,7 +3,7 @@ spring:
     name: department-consumer
   devtools:
     restart:
-      enabled: false
+      enabled: true
 
   datasource:
     username: root
@@ -11,6 +11,8 @@ spring:
     url: jdbc:mysql://49.232.45.80:3306/employees?serverTimezone=UTC&characterEncoding=utf-8
 #    driverClassName: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
+
+
 server:
   port: 9091
   tomcat:
