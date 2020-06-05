@@ -28,7 +28,7 @@ public class DepartmentsController {
      */
     @GetMapping("getDeptManagerListByDeptId")
     public CrossPlatformResponse getDeptManagerListByDeptId(String id) {
-        return new CrossPlatformResponse(200, "success", this.departmentsService.getDeptManagerInfo(id));
+        return this.departmentsService.getDeptManagerInfo(id);
     }
 
 }

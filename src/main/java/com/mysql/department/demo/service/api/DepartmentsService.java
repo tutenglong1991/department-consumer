@@ -1,8 +1,7 @@
 package com.mysql.department.demo.service.api;
 
+import com.mysql.department.demo.entity.CrossPlatformResponse;
 import com.mysql.department.demo.entity.Departments;
-import com.mysql.department.demo.entity.DeptAndEmployees;
-import com.mysql.department.demo.entity.DeptManager;
 
 import java.util.List;
 
@@ -20,7 +19,7 @@ public interface DepartmentsService {
      * @param id 主键
      * @return 多条数据
      */
-    DeptAndEmployees getDeptManagerInfo(String deptNo);
+    CrossPlatformResponse getDeptManagerInfo(String deptNo);
 
 
     /**
