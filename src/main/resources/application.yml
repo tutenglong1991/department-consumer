@@ -7,7 +7,7 @@ spring:
 
   datasource:
     username: root
-    password: 123456
+    password: root
     url: jdbc:mysql://49.232.45.80:3306/employees?serverTimezone=UTC&characterEncoding=utf-8
 #    driverClassName: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
