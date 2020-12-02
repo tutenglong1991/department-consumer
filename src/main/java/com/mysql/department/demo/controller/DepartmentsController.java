@@ -1,6 +1,7 @@
 package com.mysql.department.demo.controller;
 
 import com.mysql.department.demo.entity.CrossPlatformResponse;
+import com.mysql.department.demo.entity.IdReqVo;
 import com.mysql.department.demo.service.api.DepartmentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,9 +27,13 @@ public class DepartmentsController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("getDeptManagerListByDeptId")
+    @RequestMapping(value = "getDeptManagerListByDeptId", method = RequestMethod.GET)
     public CrossPlatformResponse getDeptManagerListByDeptId(String id) {
         return this.departmentsService.getDeptManagerInfo(id);
     }
 
+    @RequestMapping(value = "getDeptManagerListByEmpNo", method = RequestMethod.POST)
+    public CrossPlatformResponse getDeptManagerListByEmpNo(@RequestBody IdReqVo idReqVo) {
+        return this.departmentsService.getDeptManagerInfo(idReqVo.getEmpNo());
+    }
 }
