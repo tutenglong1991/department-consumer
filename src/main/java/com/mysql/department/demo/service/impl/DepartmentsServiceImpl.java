@@ -43,13 +43,12 @@ public class DepartmentsServiceImpl implements DepartmentsService {
      * Reference表示注入，但是是表示将另外一个远程服务对象当做spring容易中的对象一样注入，这个是dubbo的注解
      * Resource就是spring的资源注入
      */
-    //这里要使用Reference注解，因为该服务的实现类在其他分布式部署的服务中，需将其bean注入到当前容器内
-//    @Reference(url="dubbo://192.168.118.2:20880/com.mysql.employee.demo.service.api.EmployeesService")
-//    @Reference(url="dubbo://172.21.0.7:20880/com.mysql.employee.demo.service.api.EmployeesService")
-    @Reference(url="dubbo://172.18.0.1:20880/com.mysql.employee.demo.service.api.EmployeesService")
+    //这里要使用Reference注解，因为该服务的实现类在其他分布式部署的服务中，需将其bean注入到当前容器内....
+//   @Reference(url="dubbo://192.168.3.9:20880/com.mysql.employee.demo.service.api.EmployeesService")
+    @Reference(url="dubbo://172.21.0.7:20880/com.mysql.employee.demo.service.api.EmployeesService")
+//    @Reference(url="dubbo://172.18.0.1:20880/com.mysql.employee.demo.service.api.EmployeesService")
     @Autowired
     private EmployeesService employeesService;
-
     //此处自动注入不需要Reference注解，但是实现类得有Component注解
     @Autowired
     private DeptManagerService deptManagerService;
@@ -68,7 +67,7 @@ public class DepartmentsServiceImpl implements DepartmentsService {
         if (id == null || StringUtils.isBlank(id)){
             return new CrossPlatformResponse(DEPT_NUM_IS_NULL.getCode(), DEPT_NUM_IS_NULL.getMsg());
         }
-        logger.info("查询部门管理员详细信息的请求参数为：" + id);
+        logger.info("查询部门管理员详细信息的请求cs参数为：" + id);
         //查询部门表，获取部门名称和编号
         Departments departments = this.queryById(id);
         if (departments == null){
