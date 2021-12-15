@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DepartmentsController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">department-consumer</a> &gt; <a href="index.source.html" class="el_package">com.mysql.department.demo.controller</a> &gt; <span class="el_source">DepartmentsController.java</span></div><h1>DepartmentsController.java</h1><pre class="source lang-java linenums">package com.mysql.department.demo.controller;
+
+import com.mysql.department.demo.entity.CrossPlatformResponse;
+import com.mysql.department.demo.entity.Departments;
+import com.mysql.department.demo.entity.IdReqVo;
+import com.mysql.department.demo.service.api.DepartmentsService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+
+
+/**
+ * (Departments)表控制层
+ *
+ * @author makejava
+ * @since 2020-06-01 13:28:05
+ */
+@RestController
+@RequestMapping(&quot;departments&quot;)
+<span class="fc" id="L20">public class DepartmentsController {</span>
+
+    @Autowired
+    private DepartmentsService departmentsService;
+
+    /**
+     * 通过主键查询单条数据
+     *
+     * @param id 主键
+     * @return 单条数据
+     */
+    @RequestMapping(value = &quot;getDeptManagerListByDeptId&quot;, method = RequestMethod.GET)
+    public CrossPlatformResponse getDeptManagerListByDeptId(String id) {
+<span class="fc" id="L33">        return this.departmentsService.getDeptManagerInfo(id);</span>
+    }
+
+    @RequestMapping(value = &quot;getDeptManagerListByEmpNo&quot;, method = RequestMethod.POST)
+    public Departments getDeptManagerListByEmpNo(@RequestBody IdReqVo idReqVo) {
+<span class="fc" id="L38">        return this.departmentsService.queryById(idReqVo.getEmpNo());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.202101310351</span></div></body></html>

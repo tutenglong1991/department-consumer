@@ -1,0 +1,15 @@
+com/mysql/department/demo/dao/DeptManagerDao.class
+com/mysql/department/demo/service/api/DeptManagerService.class
+com/mysql/department/demo/entity/DeptAndEmployees.class
+com/mysql/department/demo/entity/DeptManager.class
+com/mysql/department/demo/entity/CrossPlatformResponse.class
+com/mysql/department/demo/controller/DeptManagerController.class
+com/mysql/department/demo/service/impl/DeptManagerServiceImpl.class
+com/mysql/department/demo/dao/DepartmentsDao.class
+com/mysql/department/demo/common/ResultCodeEnum.class
+com/mysql/department/demo/controller/DepartmentsController.class
+com/mysql/department/demo/DepartmentMain.class
+com/mysql/department/demo/service/impl/DepartmentsServiceImpl.class
+com/mysql/department/demo/entity/IdReqVo.class
+com/mysql/department/demo/entity/Departments.class
+com/mysql/department/demo/service/api/DepartmentsService.class

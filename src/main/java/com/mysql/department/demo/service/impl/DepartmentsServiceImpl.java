@@ -44,8 +44,8 @@ public class DepartmentsServiceImpl implements DepartmentsService {
      * Resource就是spring的资源注入
      */
     //这里要使用Reference注解，因为该服务的实现类在其他分布式部署的服务中，需将其bean注入到当前容器内....
-//   @Reference(url="dubbo://192.168.3.9:20880/com.mysql.employee.demo.service.api.EmployeesService")
-    @Reference(url="dubbo://172.21.0.7:20880/com.mysql.employee.demo.service.api.EmployeesService")
+   @Reference(url="dubbo://192.168.3.9:20880/com.mysql.employee.demo.service.api.EmployeesService")
+//    @Reference(url="dubbo://172.21.0.7:20880/com.mysql.employee.demo.service.api.EmployeesService")
 //    @Reference(url="dubbo://172.18.0.1:20880/com.mysql.employee.demo.service.api.EmployeesService")
     @Autowired
     private EmployeesService employeesService;

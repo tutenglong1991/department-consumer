@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DepartmentsServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">department-consumer</a> &gt; <a href="index.source.html" class="el_package">com.mysql.department.demo.service.impl</a> &gt; <span class="el_source">DepartmentsServiceImpl.java</span></div><h1>DepartmentsServiceImpl.java</h1><pre class="source lang-java linenums">package com.mysql.department.demo.service.impl;
+
+import com.alibaba.fastjson.JSON;
+import com.mysql.department.demo.entity.CrossPlatformResponse;
+import com.mysql.department.demo.entity.Departments;
+import com.mysql.department.demo.dao.DepartmentsDao;
+import com.mysql.department.demo.entity.DeptAndEmployees;
+import com.mysql.department.demo.entity.DeptManager;
+import com.mysql.department.demo.service.api.DepartmentsService;
+import com.mysql.department.demo.service.api.DeptManagerService;
+import com.mysql.employee.demo.entity.Employees;
+import com.mysql.employee.demo.service.api.EmployeesService;
+import org.apache.dubbo.common.utils.StringUtils;
+import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.mysql.department.demo.common.ResultCodeEnum.*;
+
+/**
+ * (Departments)表服务实现类
+ *
+ * @author makejava
+ * @since 2020-06-01 13:28:03
+ */
+@Service
+@Component
+<span class="fc" id="L35">public class DepartmentsServiceImpl implements DepartmentsService {</span>
+
+<span class="fc" id="L37">    private final static Logger logger = LoggerFactory.getLogger(DepartmentsServiceImpl.class);</span>
+
+    @Resource
+    private DepartmentsDao departmentsDao;
+    /**
+     * 服务对象
+     * Reference表示注入，但是是表示将另外一个远程服务对象当做spring容易中的对象一样注入，这个是dubbo的注解
+     * Resource就是spring的资源注入
+     */
+    //这里要使用Reference注解，因为该服务的实现类在其他分布式部署的服务中，需将其bean注入到当前容器内....
+   @Reference(url=&quot;dubbo://192.168.3.9:20880/com.mysql.employee.demo.service.api.EmployeesService&quot;)
+//    @Reference(url=&quot;dubbo://172.21.0.7:20880/com.mysql.employee.demo.service.api.EmployeesService&quot;)
+//    @Reference(url=&quot;dubbo://172.18.0.1:20880/com.mysql.employee.demo.service.api.EmployeesService&quot;)
+    @Autowired
+    private EmployeesService employeesService;
+    //此处自动注入不需要Reference注解，但是实现类得有Component注解
+    @Autowired
+    private DeptManagerService deptManagerService;
+
+//    @Autowired
+//    private DepartmentsService departmentsService;
+
+
+    /**
+     * 通过部门id查询部门下所有主管的个人详细信息
+     *
+     * @param id 主键
+     * @return 多条数据
+     */
+    public CrossPlatformResponse getDeptManagerInfo(String id){
+<span class="pc bpc" id="L67" title="1 of 4 branches missed.">        if (id == null || StringUtils.isBlank(id)){</span>
+<span class="fc" id="L68">            return new CrossPlatformResponse(DEPT_NUM_IS_NULL.getCode(), DEPT_NUM_IS_NULL.getMsg());</span>
+        }
+<span class="fc" id="L70">        logger.info(&quot;查询部门管理员详细信息的请求cs参数为：&quot; + id);</span>
+        //查询部门表，获取部门名称和编号
+<span class="fc" id="L72">        Departments departments = this.queryById(id);</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        if (departments == null){</span>
+<span class="fc" id="L74">            return new CrossPlatformResponse(REQ_PARAMS_ERROR.getCode(), &quot;部门id不存在&quot;);</span>
+        }
+<span class="fc" id="L76">        String deptNo = departments.getDeptNo();</span>
+<span class="fc" id="L77">        String deptName = departments.getDeptName();</span>
+
+        //实例化部门管理员个人信息详情类并赋值
+<span class="fc" id="L80">        DeptAndEmployees deptAndEmployees = new DeptAndEmployees();</span>
+        //查询dept_manager表格，获取该部门下的所有管理员
+<span class="fc" id="L82">        List&lt;DeptManager&gt; deptManagers = deptManagerService.queryByDeptId(id);</span>
+<span class="fc" id="L83">        deptAndEmployees.setDeptNo(deptNo);</span>
+<span class="fc" id="L84">        deptAndEmployees.setDeptName(deptName);</span>
+        //根据dept_manager表格中的empNo字段，逐个查询员工信息中的详细信息，并赋值给deptAndEmployees的deptManagerInfoList属性
+<span class="fc" id="L86">        List&lt;Employees&gt; employeeList = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">        for(DeptManager deptManager: deptManagers) {</span>
+<span class="fc" id="L88">            int empNo = deptManager.getEmpNo();</span>
+<span class="fc" id="L89">            Employees employee = employeesService.queryById(empNo);</span>
+<span class="fc" id="L90">            employeeList.add(employee);</span>
+<span class="fc" id="L91">        }</span>
+<span class="fc" id="L92">        deptAndEmployees.setDeptManagerInfoList(employeeList);</span>
+<span class="fc" id="L93">        logger.info(&quot;返回deptAndEmployees对象json格式参数为:{}&quot;, JSON.toJSONString(deptAndEmployees));</span>
+<span class="fc" id="L94">        return new CrossPlatformResponse(200, &quot;success&quot;, deptAndEmployees);</span>
+    }
+
+
+
+    /**
+     * 通过ID查询单条数据
+     *
+     * @param deptNo 主键
+     * @return 实例对象
+     */
+    @Override
+    public Departments queryById(String deptNo) {
+<span class="fc" id="L107">        return this.departmentsDao.queryById(deptNo);</span>
+    }
+
+
+    /**
+     * 查询多条数据
+     *
+     * @param offset 查询起始位置
+     * @param limit 查询条数
+     * @return 对象列表
+     */
+    @Override
+    public List&lt;Departments&gt; queryAllByLimit(int offset, int limit) {
+<span class="nc" id="L120">        return this.departmentsDao.queryAllByLimit(offset, limit);</span>
+    }
+
+    /**
+     * 新增数据
+     *
+     * @param departments 实例对象
+     * @return 实例对象
+     */
+    @Override
+    public Departments insert(Departments departments) {
+<span class="nc" id="L131">        this.departmentsDao.insert(departments);</span>
+<span class="nc" id="L132">        return departments;</span>
+    }
+
+    /**
+     * 修改数据
+     *
+     * @param departments 实例对象
+     * @return 实例对象
+     */
+    @Override
+    public Departments update(Departments departments) {
+<span class="nc" id="L143">        this.departmentsDao.update(departments);</span>
+<span class="nc" id="L144">        return this.queryById(departments.getDeptNo());</span>
+    }
+
+    /**
+     * 通过主键删除数据
+     *
+     * @param deptNo 主键
+     * @return 是否成功
+     */
+    @Override
+    public boolean deleteById(String deptNo) {
+<span class="nc bnc" id="L155" title="All 2 branches missed.">        return this.departmentsDao.deleteById(deptNo) &gt; 0;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.202101310351</span></div></body></html>

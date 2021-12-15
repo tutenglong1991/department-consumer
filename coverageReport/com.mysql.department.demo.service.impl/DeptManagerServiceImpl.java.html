@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeptManagerServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">department-consumer</a> &gt; <a href="index.source.html" class="el_package">com.mysql.department.demo.service.impl</a> &gt; <span class="el_source">DeptManagerServiceImpl.java</span></div><h1>DeptManagerServiceImpl.java</h1><pre class="source lang-java linenums">package com.mysql.department.demo.service.impl;
+
+
+import com.mysql.department.demo.entity.DeptManager;
+import com.mysql.department.demo.dao.DeptManagerDao;
+import com.mysql.department.demo.service.api.DeptManagerService;
+import org.apache.dubbo.config.annotation.Service;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+/**
+ * (DeptManager)表服务实现类
+ *如需要在其他地方自动注入该类，需要加 @Component注解
+ * @author makejava
+ * @since 2020-06-02 16:24:34
+ */
+@Service
+@Component
+<span class="fc" id="L21">public class DeptManagerServiceImpl implements DeptManagerService {</span>
+    @Resource
+    private DeptManagerDao deptManagerDao;
+
+    /**
+     * 通过ID查询单条数据
+     *
+     * @param empNo 主键
+     * @return 实例对象
+     */
+    @Override
+    public DeptManager queryById(Integer empNo) {
+<span class="nc" id="L33">        return this.deptManagerDao.queryById(empNo);</span>
+    }
+
+    /**
+     * 通过部门ID查询多条数据
+     *
+     * @param deptNo 主键
+     * @return 实例对象
+     */
+    @Override
+<span class="fc" id="L43">    public List&lt;DeptManager&gt; queryByDeptId(String deptNo) {return this.deptManagerDao.queryByDeptId(deptNo);}</span>
+
+    /**
+     * 查询多条数据
+     *
+     * @param offset 查询起始位置
+     * @param limit 查询条数
+     * @return 对象列表
+     */
+    @Override
+    public List&lt;DeptManager&gt; queryAllByLimit(int offset, int limit) {
+<span class="nc" id="L54">        return this.deptManagerDao.queryAllByLimit(offset, limit);</span>
+    }
+
+    /**
+     * 新增数据
+     *
+     * @param deptManager 实例对象
+     * @return 实例对象
+     */
+    @Override
+    public DeptManager insert(DeptManager deptManager) {
+<span class="nc" id="L65">        this.deptManagerDao.insert(deptManager);</span>
+<span class="nc" id="L66">        return deptManager;</span>
+    }
+
+    /**
+     * 修改数据
+     *
+     * @param deptManager 实例对象
+     * @return 实例对象
+     */
+    @Override
+    public DeptManager update(DeptManager deptManager) {
+<span class="nc" id="L77">        this.deptManagerDao.update(deptManager);</span>
+<span class="nc" id="L78">        return this.queryById(deptManager.getEmpNo());</span>
+    }
+
+    /**
+     * 通过主键删除数据
+     *
+     * @param empNo 主键
+     * @return 是否成功
+     */
+    @Override
+    public boolean deleteById(Integer empNo) {
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        return this.deptManagerDao.deleteById(empNo) &gt; 0;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.202101310351</span></div></body></html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeptManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">department-consumer</a> &gt; <a href="index.source.html" class="el_package">com.mysql.department.demo.entity</a> &gt; <span class="el_source">DeptManager.java</span></div><h1>DeptManager.java</h1><pre class="source lang-java linenums">package com.mysql.department.demo.entity;
+
+import java.sql.Date;
+import java.io.Serializable;
+
+/**
+ * (DeptManager)实体类
+ *
+ * @author makejava
+ * @since 2020-06-02 16:24:31
+ */
+<span class="fc" id="L12">public class DeptManager implements Serializable {</span>
+    private static final long serialVersionUID = 831118961080300592L;
+    
+    private Integer empNo;
+    
+    private String deptNo;
+    
+    private Date fromDate;
+    
+    private Date toDate;
+
+
+    public Integer getEmpNo() {
+<span class="fc" id="L25">        return empNo;</span>
+    }
+
+    public void setEmpNo(Integer empNo) {
+<span class="fc" id="L29">        this.empNo = empNo;</span>
+<span class="fc" id="L30">    }</span>
+
+    public String getDeptNo() {
+<span class="nc" id="L33">        return deptNo;</span>
+    }
+
+    public void setDeptNo(String deptNo) {
+<span class="fc" id="L37">        this.deptNo = deptNo;</span>
+<span class="fc" id="L38">    }</span>
+
+    public Date getFromDate() {
+<span class="nc" id="L41">        return fromDate;</span>
+    }
+
+    public void setFromDate(Date fromDate) {
+<span class="fc" id="L45">        this.fromDate = fromDate;</span>
+<span class="fc" id="L46">    }</span>
+
+    public Date getToDate() {
+<span class="nc" id="L49">        return toDate;</span>
+    }
+
+    public void setToDate(Date toDate) {
+<span class="fc" id="L53">        this.toDate = toDate;</span>
+<span class="fc" id="L54">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.202101310351</span></div></body></html>

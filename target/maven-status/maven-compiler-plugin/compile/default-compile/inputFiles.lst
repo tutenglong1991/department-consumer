@@ -1,0 +1,15 @@
+/Users/hemeilong/my-spring-boot-project/department-consumer/src/main/java/com/mysql/department/demo/controller/DeptManagerController.java
+/Users/hemeilong/my-spring-boot-project/department-consumer/src/main/java/com/mysql/department/demo/service/api/DepartmentsService.java
+/Users/hemeilong/my-spring-boot-project/department-consumer/src/main/java/com/mysql/department/demo/service/impl/DepartmentsServiceImpl.java
+/Users/hemeilong/my-spring-boot-project/department-consumer/src/main/java/com/mysql/department/demo/entity/Departments.java
+/Users/hemeilong/my-spring-boot-project/department-consumer/src/main/java/com/mysql/department/demo/entity/DeptManager.java
+/Users/hemeilong/my-spring-boot-project/department-consumer/src/main/java/com/mysql/department/demo/dao/DeptManagerDao.java
+/Users/hemeilong/my-spring-boot-project/department-consumer/src/main/java/com/mysql/department/demo/common/ResultCodeEnum.java
+/Users/hemeilong/my-spring-boot-project/department-consumer/src/main/java/com/mysql/department/demo/service/impl/DeptManagerServiceImpl.java
+/Users/hemeilong/my-spring-boot-project/department-consumer/src/main/java/com/mysql/department/demo/entity/CrossPlatformResponse.java
+/Users/hemeilong/my-spring-boot-project/department-consumer/src/main/java/com/mysql/department/demo/dao/DepartmentsDao.java
+/Users/hemeilong/my-spring-boot-project/department-consumer/src/main/java/com/mysql/department/demo/entity/IdReqVo.java
+/Users/hemeilong/my-spring-boot-project/department-consumer/src/main/java/com/mysql/department/demo/DepartmentMain.java
+/Users/hemeilong/my-spring-boot-project/department-consumer/src/main/java/com/mysql/department/demo/service/api/DeptManagerService.java
+/Users/hemeilong/my-spring-boot-project/department-consumer/src/main/java/com/mysql/department/demo/entity/DeptAndEmployees.java
+/Users/hemeilong/my-spring-boot-project/department-consumer/src/main/java/com/mysql/department/demo/controller/DepartmentsController.java

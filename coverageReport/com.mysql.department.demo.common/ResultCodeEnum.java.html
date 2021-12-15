@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ResultCodeEnum.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">department-consumer</a> &gt; <a href="index.source.html" class="el_package">com.mysql.department.demo.common</a> &gt; <span class="el_source">ResultCodeEnum.java</span></div><h1>ResultCodeEnum.java</h1><pre class="source lang-java linenums">package com.mysql.department.demo.common;
+
+<span class="fc" id="L3">public enum ResultCodeEnum {</span>
+<span class="fc" id="L4">    SUCCESS(Integer.valueOf(0), &quot;success&quot;, &quot;成功&quot;),</span>
+<span class="fc" id="L5">    FAILED(69999, &quot;department system error&quot;, &quot;系统内部异常，请联系管理员&quot;),</span>
+<span class="fc" id="L6">    OTHER_ERROR(68888, &quot;other system error&quot;, &quot;其他系统内部异常，请联系管理员&quot;),</span>
+<span class="fc" id="L7">    DEPT_NUM_IS_NULL(67777, &quot;deptNo can not be null&quot;, &quot;部门id不能为空&quot;),</span>
+<span class="fc" id="L8">    REQ_PARAMS_ERROR(Integer.valueOf(60000), &quot;req params error&quot;, &quot;请求参数错误&quot;);</span>
+
+
+    private Integer code;
+    private String msg;
+    private String cnMsg;
+
+<span class="fc" id="L15">    private ResultCodeEnum(Integer code, String msg, String cnMsg) {</span>
+<span class="fc" id="L16">        this.code = code;</span>
+<span class="fc" id="L17">        this.msg = msg;</span>
+<span class="fc" id="L18">        this.cnMsg = cnMsg;</span>
+<span class="fc" id="L19">    }</span>
+
+    public Integer getCode() {
+<span class="fc" id="L22">        return this.code;</span>
+    }
+
+    public String getMsg() {
+<span class="fc" id="L26">        return this.msg;</span>
+    }
+
+    public String getCnMsg() {
+<span class="nc" id="L30">        return this.cnMsg;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.202101310351</span></div></body></html>
