@@ -69,19 +69,19 @@ public class DepartmentsServiceImpl implements DepartmentsService {
         }
         logger.info("查询部门管理员详细信息的请求cs参数为：" + id);
         //查询部门表，获取部门名称和编号
-        Departments departments = this.queryById(id);
-        if (departments == null){
-            return new CrossPlatformResponse(REQ_PARAMS_ERROR.getCode(), "部门id不存在");
-        }
-        String deptNo = departments.getDeptNo();
-        String deptName = departments.getDeptName();
+//        Departments departments = this.queryById(id);
+//        if (departments == null){
+//            return new CrossPlatformResponse(REQ_PARAMS_ERROR.getCode(), "部门id不存在");
+//        }
+//        String deptNo = departments.getDeptNo();
+//        String deptName = departments.getDeptName();
 
         //实例化部门管理员个人信息详情类并赋值
         DeptAndEmployees deptAndEmployees = new DeptAndEmployees();
         //查询dept_manager表格，获取该部门下的所有管理员
         List<DeptManager> deptManagers = deptManagerService.queryByDeptId(id);
-        deptAndEmployees.setDeptNo(deptNo);
-        deptAndEmployees.setDeptName(deptName);
+//        deptAndEmployees.setDeptNo(deptNo);
+//        deptAndEmployees.setDeptName(deptName);
         //根据dept_manager表格中的empNo字段，逐个查询员工信息中的详细信息，并赋值给deptAndEmployees的deptManagerInfoList属性
         List<Employees> employeeList = new ArrayList<>();
         for(DeptManager deptManager: deptManagers) {
